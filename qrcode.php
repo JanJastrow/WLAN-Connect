@@ -17,7 +17,7 @@ if (empty($_GET)) {
 	$wlan = (int) $_GET['id'];
 }
 
-$size = 5;
+$size = 8;
 $margin = 0;
 
 // Wifi is hidden?
