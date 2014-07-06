@@ -4,9 +4,8 @@
 // Configure your own wifi(s)
 */
 
-$description = "– IN WIFI WE TRUST! –";
-$identifier = "de.schwerkraftlabor.wlan";
 $organization = "Schwerkraftlabor.de";
+$identifier = "de.schwerkraftlabor.wlan";
 
 $arr_wlan = array(
 					array(
@@ -16,6 +15,7 @@ $arr_wlan = array(
 						'standards' => 'n/a',
 						'freq' => '5',
 						'hidden' => false,
+						'description' => '– IN WIFI WE TRUST! –',
 					),
 					array(
 						'name' => 'Schwerkraftlabor Beta',
@@ -24,6 +24,7 @@ $arr_wlan = array(
 						'standards' => 'n/g',
 						'freq' => '2.4',
 						'hidden' => false,
+						'description' => '– IN WIFI WE TRUST! –',
 					),
 				);
 ?>

@@ -36,7 +36,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>
 			<key>Password</key>
 			<string>'.$arr_wlan[$wlan]["pass"].'</string>
 			<key>PayloadDescription</key>
-			<string>'.$description.'</string>
+			<string>'.$arr_wlan[$wlan]["description"].'</string>
 			<key>PayloadDisplayName</key>
 			<string>'.$arr_wlan[$wlan]["name"].'</string>
 			<key>PayloadIdentifier</key>
@@ -54,7 +54,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>
 		</dict>
 	</array>
 	<key>PayloadDescription</key>
-	<string>'.$description.'</string>
+	<string>'.$arr_wlan[$wlan]["description"].'</string>
 	<key>PayloadDisplayName</key>
 	<string>'.$arr_wlan[$wlan]["name"].'</string>
 	<key>PayloadIdentifier</key>

@@ -77,7 +77,7 @@ echo '<div class="center">';
 $n = 0;
 while ($n <= (count($arr_wlan)-1) ) {
 	echo '
-	<a href="mobileconfig.php?id=0" class="install">
+	<a href="mobileconfig.php?id='.$n.'" class="install">
 	<h1>'.$arr_wlan[$n]["name"].'</h1>
 	<p>802.11'.$arr_wlan[$n]["standards"].' – '.$arr_wlan[$n]["freq"].' GHz</p>
 	<p><object data="img/cog.svg" type="image/svg+xml" class="cog"></object>&nbsp;Install WiFi-profile</p>
@@ -90,7 +90,7 @@ echo '
 <div class="center">
 <div class="install">
 	<h1>Schwerkraftlabor&nbsp;WLAN</h1>
-	<p>(!)&nbsp;Diese Funktion ist nur auf iOS oder Mac-Geräten verfügbar.</p>
+	<p>(!)&nbsp;This site only works on iOS- and OS X-devices.</p>
 </div>
 </div>
 ';
