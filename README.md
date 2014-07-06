@@ -11,3 +11,5 @@ Making connecting to my WiFi pretty easy (at least for iOS Users).
 My code is licensed under MIT.
 
 The used PHPQRCode-Library is licensed under LGPL.
+
+The cog svg is made by Simon Alexander Tolhurst (CC-BY-SA).

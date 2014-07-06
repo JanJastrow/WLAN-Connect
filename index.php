@@ -1,10 +1,14 @@
+<?php
+// include config
+require 'config.php';
+
+?>
 <!doctype html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Schwerkraftlabor WLAN</title>
+<title><?php echo $organization; ?> WiFi</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui" />
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <style>
 *, *::before, *::after {
 	margin: 0;
@@ -30,6 +34,7 @@ h1 {
 }
 
 .install {
+	width: 230px;
 	margin: 1em .2em;
 	display: inline-block;
 	color: #000000;
@@ -48,6 +53,11 @@ h1 {
 	margin: .5em 0;
 }
 
+.cog {
+	width: 12px;
+	height: 12px;
+}
+
 .center {
 	position: absolute;
 	left: 50%;
@@ -60,28 +70,27 @@ h1 {
 </head>
 <body>
 <?php
+#echo '<img src="qrcode.php" alt="QR-Code" />';
 if(strstr($_SERVER['HTTP_USER_AGENT'],'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'],'iPod') || strstr($_SERVER['HTTP_USER_AGENT'],'Mac'))
 {
-echo '
-<div class="center">
-<a href="alpha.mobileconfig" class="install">
-	<h1>Schwerkraftlabor&nbsp;Alpha</h1>
-	<p>802.11n/a – 5 GHz</p>
-	<p><i class="fa fa-cog"></i>&nbsp;WLAN-Profil installieren</p>
-</a>
-<a href="beta.mobileconfig" class="install">
-	<h1>Schwerkraftlabor&nbsp;Beta</h1>
-	<p>802.11n/g – 2.4 GHz</p>
-	<p><i class="fa fa-cog"></i>&nbsp;WLAN-Profil installieren</p>
-</a>
-</div>
-';
+echo '<div class="center">';
+$n = 0;
+while ($n <= (count($arr_wlan)-1) ) {
+	echo '
+	<a href="mobileconfig.php?id=0" class="install">
+	<h1>'.$arr_wlan[$n]["name"].'</h1>
+	<p>802.11'.$arr_wlan[$n]["standards"].' – '.$arr_wlan[$n]["freq"].' GHz</p>
+	<p><object data="img/cog.svg" type="image/svg+xml" class="cog"></object>&nbsp;Install WiFi-profile</p>
+	</a>';
+	$n++;
+}
+echo '</div>';
 } else {
 echo '
 <div class="center">
 <div class="install">
 	<h1>Schwerkraftlabor&nbsp;WLAN</h1>
-	<p><i class="fa fa-exclamation-triangle"></i>&nbsp;Diese Funktion ist nur auf iOS oder Mac-Geräten verfügbar.</p>
+	<p>(!)&nbsp;Diese Funktion ist nur auf iOS oder Mac-Geräten verfügbar.</p>
 </div>
 </div>
 ';

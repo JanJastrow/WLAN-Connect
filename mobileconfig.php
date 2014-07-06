@@ -1,4 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?php
+// Set mime-type for mobileconfiguration-profiles
+header('Content-type: application/x-apple-aspen-config; chatset=utf-8');
+
+// include config
+include 'config.php';
+
+$wlan = (int) 0;
+if (empty($_GET)) {
+	$wlan = (int) 0;
+} elseif ($_GET['id'] == 1){
+	$wlan = (int) 1;
+} else {
+	$wlan = (int) $_GET['id'];
+}
+
+// Wifi is hidden?
+
+if ($arr_wlan[$wlan]["hidden"] == true) {
+	$hidden = (string) "<true/>";
+} else {
+	$hidden = (string) "<false/>";
+}
+
+echo '<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
@@ -8,17 +32,17 @@
 			<key>EncryptionType</key>
 			<string>Any</string>
 			<key>HIDDEN_NETWORK</key>
-			<false/>
+			'.$hidden.'
 			<key>Password</key>
-			<string>Douglas42</string>
+			<string>'.$arr_wlan[$wlan]["pass"].'</string>
 			<key>PayloadDescription</key>
-			<string>– IN WIFI WE TRUST! –</string>
+			<string>'.$description.'</string>
 			<key>PayloadDisplayName</key>
-			<string>Schwerkraftlabor Alpha</string>
+			<string>'.$arr_wlan[$wlan]["name"].'</string>
 			<key>PayloadIdentifier</key>
-			<string>de.schwerkraftlabor.wifi</string>
+			<string>'.$identifier.'</string>
 			<key>PayloadOrganization</key>
-			<string>Schwerkraftlabor.de</string>
+			<string>'.$organization.'</string>
 			<key>PayloadType</key>
 			<string>com.apple.wifi.managed</string>
 			<key>PayloadUUID</key>
@@ -26,17 +50,17 @@
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 			<key>SSID_STR</key>
-			<string>Schwerkraftlabor Alpha</string>
+			<string>'.$arr_wlan[$wlan]["name"].'</string>
 		</dict>
 	</array>
 	<key>PayloadDescription</key>
-	<string>– IN WIFI WE TRUST! –</string>
+	<string>'.$description.'</string>
 	<key>PayloadDisplayName</key>
-	<string>Schwerkraftlabor Alpha</string>
+	<string>'.$arr_wlan[$wlan]["name"].'</string>
 	<key>PayloadIdentifier</key>
-	<string>de.schwerkraftlabor.wifi</string>
+	<string>'.$identifier.'</string>
 	<key>PayloadOrganization</key>
-	<string>Schwerkraftlabor.de</string>
+	<string>'.$organization.'</string>
 	<key>PayloadRemovalDisallowed</key>
 	<false/>
 	<key>PayloadType</key>
@@ -46,7 +70,7 @@
 	<key>PayloadVersion</key>
 	<integer>1</integer>
 	<key>SSID_STR</key>
-	<string>Schwerkraftlabor Alpha</string>
+	<string>'.$arr_wlan[$wlan]["name"].'</string>
 </dict>
-</plist>
-
+</plist>';
+?>
