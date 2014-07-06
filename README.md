@@ -16,5 +16,7 @@ http://wlan.schwerkraftlabor.de
 
 ## License
 My code is licensed under MIT-license.
+
 The used PHPQRCode-library is licensed under LGPL.
+
 The Cogwheel-image is made by Simon Alexander Tolhurst (CC-BY-SA).
