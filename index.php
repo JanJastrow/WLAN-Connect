@@ -18,7 +18,7 @@ require 'config.php';
 
 body {
 	font-family: sans-serif;
-	background: #2694af;
+	background: <?php echo $bgcolor; ?>;
 	font-size: 12pt;
 }
 a {
@@ -29,6 +29,11 @@ a {
 h1 {
 	font-size: 1.5em;
 	white-space: nowrap;
+}
+@media only screen and (max-width: 320px) {
+	h1 {
+		font-size: 1.2em;
+	}
 }
 
 a.profiles {
@@ -55,7 +60,7 @@ a.profiles {
 .desktop .links {
 	display: inline-block;
 	border: 1px solid #aaa;
-	padding: 0.5em 4em 0.4em 0.5em;
+	padding: 0.5em 0.5em 0.4em 0.5em;
 	background:rgba(255,255,255,0.3);
 }
 .mobile .links {
@@ -63,6 +68,9 @@ a.profiles {
 	border: 1px solid black;
 	padding: 0.5em 0.5em;
 	background:rgba(255,255,255,0.65);
+}
+.mobile {
+	margin: 4%;
 }
 
 .icon {
@@ -89,68 +97,45 @@ a.profiles {
 	-ms-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 }
-.mobile {
-	margin: 4%;
-}
-
-@media only screen and (max-width: 320px) {
-	h1 {
-		font-size: 1.2em;
-	}
-	.headline {
-	}
-}
 
 .overlay {
-	height: 252px;
-	width: 252px;
 	margin: 0 auto;
-	background: white;
-	color: black;
-	padding: 10px;
+	background: #fff;
+	padding: 1.5em;
 	z-index: 999;
 	display: none;
-	/* CSS 3 */
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	-o-border-radius: 10px;
 	border-radius: 10px;
 }
-.overlay img {
-	margin: 10px;
-}
-.mask0 {
+
+<?php
+$n = 0;
+while ($n <= ($wificount-1) ) {
+echo '
+.mask'.$n.' {
 	position: fixed;
 	top: 0;
 	left: 0;
 	background: rgba(0,0,0,0.65);
-	z-index: 510;
+	z-index: 50'.$n.';
 	width: 100%;
 	height: 100%;
 	display: none;
 }
-.mask1 {
-	position: fixed;
-	top: 0;
-	left: 0;
-	background: rgba(0,0,0,0.65);
-	z-index: 520;
-	width: 100%;
-	height: 100%;
-	display: none;
-}
-#overlay0:target, #overlay0:target + .mask0 {
+#overlay'.$n.':target, #overlay'.$n.':target + .mask'.$n.' {
 	display: block;
 	opacity: 1;
 }
-#overlay1:target, #overlay1:target + .mask1 {
-	display: block;
+';
+	$n++;
 }
+?>
 </style>
 </head>
 <body>
 <?php
-#if(strstr($_SERVER['HTTP_USER_AGENT'],'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'],'iPod') || strstr($_SERVER['HTTP_USER_AGENT'],'Mac'))
 if(strstr($_SERVER['HTTP_USER_AGENT'],'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'],'iPod'))
 {
 /*
@@ -182,18 +167,24 @@ while ($n <= ($wificount-1) ) {
 */
 echo '
 <div class="center desktop">
-	<div class="profiles headline">
-	<h1>Schwerkraftlabor.de</h1>
-</div>
+	<div class="profiles">
+		<h1>Schwerkraftlabor.de</h1>
+	</div>
 ';
 $n = 0;
 while ($n <= ($wificount-1) ) {
 	echo '
-<div class="profiles">
+	<div class="profiles">
 	<h1>'.$arr_wlan[$n]["name"].'</h1>
 	<p class="info">802.11'.$arr_wlan[$n]["standards"].' – '.$arr_wlan[$n]["freq"].' GHz – '.$arr_wlan[$n]["sec"].'-protected</p>
-	<p class="password">Password:&nbsp;<input type="text" onfocus="this.select()" value="'.$arr_wlan[$n]["pass"].'"></input></p>
-	<p><a class="links" href="#overlay'.$n.'"><object data="img/cog.svg" type="image/svg+xml" class="icon"></object>&nbsp;Show QR-code</a></p>
+	<p class="password">Password:&nbsp;<input type="text" onfocus="this.select()" value="'.$arr_wlan[$n]["pass"].'"></input></p>';
+
+// If Mac => display WiFi-profile too
+if(strstr($_SERVER['HTTP_USER_AGENT'],'Mac')) {
+	echo '<p><a class="links" href="mobileconfig.php?id='.$n.'"><object data="img/cog.svg" type="image/svg+xml" class="icon"></object>&nbsp;Install WiFi-profile</a></p>';
+}
+
+echo '<p><a class="links" href="#overlay'.$n.'"><object data="img/cog.svg" type="image/svg+xml" class="icon"></object>&nbsp;Show QR-code</a></p>
 </div>
 	';
 	$n++;
@@ -207,6 +198,5 @@ while ($n <= ($wificount-1) ) {
 	}
 }
 ?>
-
 </body>
 </html>

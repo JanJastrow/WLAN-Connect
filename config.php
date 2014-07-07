@@ -8,13 +8,15 @@
 $organization = "Schwerkraftlabor.de";
 // choose an identifier (not that important)
 $identifier = "de.schwerkraftlabor.wlan";
+// choose an background-color
+$bgcolor = "#2694af";
 
 $arr_wlan = array(
 					array(
 						// the SSID (Name) of your WiFi
-						'name' => 'Schwerkraftlabor Alpha',
+						'name' => 'Schwerkraftlabor WLAN1',
 						// the password
-						'pass' => 'Douglas42',
+						'pass' => 'Password1',
 						// the encryption-method
 						'sec' => 'WPA2',
 						// the 802.11-standards
@@ -27,18 +29,18 @@ $arr_wlan = array(
 						'description' => '– IN WIFI WE TRUST! –',
 					),
 
-					// If you got only 1 WiFi you can delete the following part:
+					// If you got only 1 WiFi you can delete the following part
 					// or change the configuration to your own needs.
 
 					array(
 						// the SSID (Name) of your WiFi
-						'name' => 'Schwerkraftlabor Beta',
+						'name' => 'Schwerkraftlabor WLAN2',
 						// the password
-						'pass' => 'Douglas42',
+						'pass' => 'Password2',
 						// the encryption-method
 						'sec' => 'WPA2',
 						// the 802.11-standards
-						'standards' => 'n/g',
+						'standards' => 'b/g/n',
 						// the frequency (5Ghz / 2.4 GHz)
 						'freq' => '2.4',
 						// is the WiFi hidden?
@@ -50,7 +52,6 @@ $arr_wlan = array(
 					// delete to this line (^ above)
 
 				);
-
 
 // this counts the number of WiFis (nothing to change here)
 $wificount = count($arr_wlan);
