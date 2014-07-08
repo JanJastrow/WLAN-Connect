@@ -168,7 +168,7 @@ while ($n <= ($wificount-1) ) {
 echo '
 <div class="center desktop">
 	<div class="profiles">
-		<h1>Schwerkraftlabor.de</h1>
+		<h1>'.$organization.'</h1>
 	</div>
 ';
 $n = 0;
